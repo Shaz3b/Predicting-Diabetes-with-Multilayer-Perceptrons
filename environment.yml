@@ -7,5 +7,4 @@ dependencies:
   - keras
   - seaborn
   - scikit-learn
-prefix: /Users/shazeb/opt/anaconda3/envs/Predicting-Diabetes
 
