@@ -3,7 +3,7 @@
 
 
 
-###Creating the environment
+### Creating environment with conda
 
 <pre>
 ~$git clone https://github.com/Shaz3b/Predicting-Diabetes-with-Multilayer-Perceptrons.git
