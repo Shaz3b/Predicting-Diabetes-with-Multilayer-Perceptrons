@@ -3,6 +3,9 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from keras.models import Sequential
 from keras.layers import Dense
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 df = pd.read_csv('diabetes.csv')
 
@@ -33,3 +36,14 @@ scores = model.evaluate(X_train, y_train, verbose=False)
 print("Training Accuracy: %.2f%%\n" % (scores[1]*100))
 scores = model.evaluate(X_test, y_test, verbose=False)
 print("Testing Accuracy: %.2f%%\n" % (scores[1]*100))
+
+y_test_pred = model.predict_classes(X_test)
+c_matrix = confusion_matrix(y_test, y_test_pred)
+ax = sns.heatmap(c_matrix, annot=True,
+                 xticklabels=['No Diabetes','Diabetes'],
+                 yticklabels=['No Diabetes','Diabetes'],
+                 cbar=False, cmap='Blues')
+ax.set_xlabel("Prediction")
+ax.set_ylabel("Actual")
+plt.show()
+plt.clf()
