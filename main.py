@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import roc_curve
 from keras.models import Sequential
 from keras.layers import Dense
 from sklearn.metrics import confusion_matrix
@@ -45,5 +46,16 @@ ax = sns.heatmap(c_matrix, annot=True,
                  cbar=False, cmap='Blues')
 ax.set_xlabel("Prediction")
 ax.set_ylabel("Actual")
+plt.show()
+plt.clf()
+
+y_test_pred_probs = model.predict(X_test)
+FPR, TPR, _ = roc_curve(y_test, y_test_pred_probs)
+
+plt.plot(FPR, TPR)
+plt.plot([0,1], [0,1], '--', color='black')
+plt.title('ROC Curve')
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
 plt.show()
 plt.clf()
